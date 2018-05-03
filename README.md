@@ -1,10 +1,10 @@
 # Zoom
-Zoom is a dedicated wordpress username enumeration tool with infinite scanning.
+Zoom is the fastest wordpress vulnerability scanner with infinite username enumeration. It doesn't support plugin & theme enumeration at the moment.
+> What's infinite scanning? Try enumerating usernames of cybrary.com with Zoom & wpscan.
+
 #### Usages
-Zoom will run on any device having python2.<br>
-Argument syntax is following:
 ``` bash
 python zoom.py -u <wordpress site>
 ```
-### Demo
-<img src='https://i.imgur.com/ECtgYWQ.png' />
+![vulnerability](https://i.imgur.com/Gl9Jv78.png)
+![usernames](https://i.imgur.com/gVcdDia.png)
