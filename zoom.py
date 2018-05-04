@@ -103,7 +103,7 @@ def automatic(url, domain):
             print ('\n%s %s seems to use WordPress' % (good, subdomain))
             version = metagenerator('http://' + subdomain)
             version_vul(version[0], version[1])
-            manual(url)
+            manual('http://' + subdomain)
         progress = progress + 1
     print ''
 
@@ -142,8 +142,6 @@ else:
 
 if args.url and args.auto:
     automatic(url, domain)
-    for subdomain in subdomains:
-        iswordpress('http://' + domain)
 else:
     try:
         version = metagenerator(url)
