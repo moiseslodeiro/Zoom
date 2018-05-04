@@ -2,6 +2,9 @@
 Zoom is a lightning fast wordpress vulnerability scanner equipped with subdomain & infinite username enumeration.. It doesn't support plugin & theme enumeration at the moment.
 > What's infinite enumeration? Try enumerating usernames of cybrary.com with Zoom & wpscan (or your fav tool).
 
+Twitter: [@weareultimate](http://twitter.com/weareultimates)
+Website: [teamultimate.in](https://teamultimate.in)
+
 #### Usages
 ##### Manual Mode
 ``` bash
@@ -21,3 +24,6 @@ In the automatic mode, Zoom will find subdomains and check the ones using wordpr
 #### Manual Mode Demo
 ![vulnerability](https://i.imgur.com/Gl9Jv78.png)
 ![usernames](https://i.imgur.com/gVcdDia.png)
+
+#### License
+Zoom is licensed under [MIT](https://opensource.org/licenses/MIT) license.
