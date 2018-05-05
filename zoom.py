@@ -74,9 +74,11 @@ def iswordpress(url):
 def source_dig(url, domain):
     print ('%s Finding subdomains' % run)
     response = requests.get(url).text
-    matches = re.findall(r'//.*\.%s'%domain, response)
+    matches = re.findall(r'//[^"\']*\.%s'%domain, response)
     for match in matches:
-        subdomains.add(match.split('/')[2])
+        clean = match.split('/')[2]
+        if clean.endswith(domain):
+            subdomains.add(clean)
     for subdomain in subdomains:
         print (subdomain)
 
