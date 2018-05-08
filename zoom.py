@@ -52,7 +52,7 @@ def version_vul(version, version_dec):
     if not jsoned[version_dec]['vulnerabilities']:
         print ('%s No vulnerabilities found' % bad)
     else:
-        print ''
+        print ('')
         print ('%s-%s' % (red, end)) * 50
         for vulnerability in jsoned[version_dec]['vulnerabilities']:
             print ('%s %s' % (good, vulnerability['title']))
@@ -107,7 +107,7 @@ def automatic(url, domain):
             version_vul(version[0], version[1])
             manual('http://' + subdomain)
         progress = progress + 1
-    print ''
+    print ('')
 
 def manual(url):
     print ('%s Extracting usernames' % run)
